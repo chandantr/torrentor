@@ -1,0 +1,53 @@
+This is a simple torrentor implementation in Java.
+The entire code is in files torrentserver.java, torrentclient.java, MultiTorrentClientThread.java and MultiTorrentServerThread.java
+To compile do "make".
+Then in separate terminals, use "torrentserver" and "torrentclient" classes respectively.
+
+Sample runs are provided for understanding the basic functionality.
+
+
+###########################################
+############# first run ###################
+###########################################
+
+#(at server)	
+java torrentserver 
+
+#(at client)
+java torrentclient test_dir/abc.txt 3 127.0.0.1 4455
+
+#(check)
+diff received.txt test_dir/abc.txt
+
+
+
+###########################################
+############# second run ###################
+###########################################
+
+#(at server)	
+java torrentserver 
+
+#(at client)
+java torrentclient test_dir/ghi 3 127.0.0.1 4455
+
+#(check)
+diff received.txt test_dir/ghi
+
+
+###########################################
+############# third run ###################
+###########################################
+
+#(at server)	
+java torrentserver 
+
+#(at client)
+java torrentclient test_dir/abc.txt 5 127.0.0.1 4455
+
+#(check)
+diff received.txt test_dir/abc.txt
+
+
+
+

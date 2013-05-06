@@ -1,0 +1,19 @@
+gnment, it uses a for loop to write it on the board 20 times.
+➞46 Any of the socket I/O statements can throw exceptions. They are
+all caught here as a generic exception, and the diagnostic information
+is sent to the console so you can debug any problems that might arise.
+➞50 The getSocket method accepts a port number as a parameter and
+returns a socket that’s connected via the specified port. This method
+doesn’t give up until the user enters the name of a host the program
+can connect to.
+➞62 The host name is read from the console.
+➞65 The static getByName method of the InetAddress class is called
+to get an IP address for the host name entered by the user. Note that
+if the user enters a host name that doesn’t exist, UnknownHost
+Exception is thrown. This exception is caught in line 69.
+➞66 Now that you have an IP address, this line tries to create a Socket
+object using the specified address and port. This method throws
+IOException if it isn’t able to connect to the IP address and port.
+➞67 If you make it to this line, you can assume the socket has been created
+and you’re connected. So the return state
+

@@ -1,0 +1,45 @@
+The assignment is to build a torrentserver and a torrentclient to aid in downloading files by clients from the server.
+
+Tasks:
+
+    A client requests a file to be downloaded from the server and number of chunks
+    in which the file should be downloaded.
+
+    usage: (for client)
+    $java torrentclient filename numchunks serverIP serverPort
+      filename: name of file to be downloaded 
+     numchunks: number of chunks/parts in which file should be obtained from server 
+      serverIP: IP address of server 
+    serverPost: listening port for server
+
+    usage: (for server) 
+    $java torrentserver
+
+    Client uses this information to open a socket to the server and sends filename and number of parts (#parts in which file will be sent).
+    Server is waiting on a socket for client requests.
+    Server accepts client request and reads in filename and number of chunks (k) information from client.
+    e.g., if filea.txt is of size 30,000 bytes and number of chunks is 3, the server must
+    deliver the 3 chunks (each of size 10,000 bytes) to the client on three different connections/sockets.
+    The server opens (or uses three existing already open) sockets for this..
+    Serve sends port number information for these to the client.
+    Client receives the k ports numbers (it already knows the server IP address).
+    Using the above information, client opens k sockets to connect to the three ports on the server.
+    Server accepts connections on the k sockets and send the k chunks in parallel.
+    Client receives all chunks, puts them together and generates the final output file.
+    Note 1: Both the client and the server need to be multi-threaded.
+    Note 2: Assume only one client can connect to the server at any time.
+    Note 3: Assume client asks for text files only.
+    Outputs
+    - Requested file at client, identical to one at the server.
+    - Print a message (on screen) for each of the following events:
+            * initial connection to server (print client IP, filename and number of chunks
+            * port numbers received by client to be connect for k chunks
+            * port numbers to which socket is bound to for the k sockets used to connect to server
+            * connection establishment message (with client IP and server port number) at server
+            * completion message after transmission of each chunk at server
+            * completion message after reception of each chunk at chunk
+            * file downloaded and put-together message at client
+            * print the time required since first file request to server to download complete. also, print avergae download rate in bytes/sec.
+    some JAVA classes that you might end up using:
+    File, RandomAccessFile, Thread, Socket, ServerSocket, DtagramSocket, BufferedReader, InputStreamReader,
+    OutputStreamReader, PrintWriter and others. 
